@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      text-align: center;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 50%;
+      margin: 4em auto;
+    }
+
+    thead,
+    tfoot {
+      background-color: #666;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    th,
+    td {
+      border: 1px solid black;
+    }
+
+/*     
+    tbody tr:nth-child(1),
+    tr:nth-child(3),
+    tr:nth-child(5) {
+      background-color: #bbb;
+    }
+
+    tbody tr:nth-child(2),
+    tr:nth-child(4) {
+      background-color: #eee;
+    }
+*/
+
+    tbody tr:nth-child(even) {
+      background-color: #bbb;
+    }
+
+    tbody tr:nth-child(odd) {
+      background-color: #eee;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Exemplo de Tabela Simples</h1>
+  <table>
+
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Idade</th>
+        <th>Cidade</th>
+        <th>Saldo</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>André</td>
+        <td>20</td>
+        <td>Aracaju</td>
+        <td>R$ 1.000</td>
+      </tr>
+      <tr>
+        <td>Bernardo</td>
+        <td>21</td>
+        <td>Brasília</td>
+        <td>R$ 2.000</td>
+      </tr>
+      <tr>
+        <td>Caroline</td>
+        <td>22</td>
+        <td>Curitiba</td>
+        <td>R$ 3.000</td>
+      </tr>
+      <tr>
+        <td>Daniel</td>
+        <td>23</td>
+        <td>Diadema</td>
+        <td>R$ 4.000</td>
+      </tr>
+      <tr>
+        <td>Eduardo</td>
+        <td>24</td>
+        <td>Euclides da Cunha</td>
+        <td>R$ 5.000</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3">Soma:</td>
+        <td>R$ 15.000</td>
+      </tr>
+    </tfoot>
+  </table>
+</body>
+
+</html>
