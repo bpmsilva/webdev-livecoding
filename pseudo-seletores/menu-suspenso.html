@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu com Hover</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        ul {
+            display: flex;
+            justify-content: center;
+            background-color: tomato;
+            flex-wrap: wrap;
+        }
+
+        li {
+            list-style: none;
+            background-color: salmon;
+            position: relative;
+        }
+
+        a {
+            display: block;
+            text-decoration: none;
+            color: white;
+            cursor: pointer;
+            padding: 1em;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        a:hover {
+            background-color: #666;
+        }
+
+        /* Submenu */
+        ul li ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            /* background-color: salmon; */
+            /* padding: 0; */
+        }
+
+        ul li:hover ul {
+            display: block;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 2em;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li><a href="#">Sobre</a></li>
+        <li><a href="#">Informações</a>
+            <ul>
+                <li><a href="#">Institucional</a></li>
+                <li><a href="#">Programas</a></li>
+                <li><a href="#">Social</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Reitoria</a>
+            <ul>
+                <li><a href="#">Agenda</a></li>
+                <li><a href="#">Sistemas</a></li>
+                <li><a href="#">Cerimonial</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Sistemas</a>
+            <ul>
+                <li><a href="#">Biblioteca</a></li>
+                <li><a href="#">SUAP</a></li>
+                <li><a href="#">SEI</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Contato</a></li>
+    </ul>
+
+    <h1>Menu com Hover</h1>
+
+</body>
+
+</html>
