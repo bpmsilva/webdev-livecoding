@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu com Hover</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        ul {
+            display: flex;
+            justify-content: center;
+            background-color: tomato;
+            flex-wrap: wrap;
+        }
+
+        li {
+            list-style: none;
+            background-color: salmon;
+        }
+
+        a {
+            display: block;
+            text-decoration: none;
+            color: white;
+            cursor: pointer;
+            padding: 1em;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        a:hover {
+            background-color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li><a href="#">Sobre</a></li>
+        <li><a href="#">Informações</a></li>
+        <li><a href="#">Reitoria</a></li>
+        <li><a href="#">Sistemas</a></li>
+        <li><a href="#">Contato</a></li>
+    </ul>
+</body>
+
+</html>
