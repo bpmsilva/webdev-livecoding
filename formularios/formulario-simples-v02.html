@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário Simples</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            /* color: #333; */
+        }
+
+        h1 {
+            text-align: center;
+            margin: 1em;
+        }
+
+        form {
+            margin: auto;
+            padding: 2em;
+            width: 35%;
+            border: 1px solid grey;
+            border-radius: 1em;
+            background-color: white;
+        }
+
+        fieldset {
+            padding: 2em;
+            /* text-align: center; */
+            width: 100%;
+            border-radius: 1em;
+            font-size: 1.5em;
+            background-color: #f4f4f4;
+        }
+
+        button {
+            width: 80%;
+            padding: 1em;
+            display: block;
+            margin: auto;
+            margin-top: 2em;
+            background-color: rgb(16, 167, 16);
+            text-transform: uppercase;
+            font-weight: 900;
+            color: white;
+            border: 0.25em solid rgb(16, 167, 16);
+            border-radius: 0.5em;
+        }
+
+        input {
+            padding: 1em;
+            width: 100%;
+            border-radius: 0.5em;
+            margin-bottom: 2em;
+        }
+
+        textarea {
+            padding: 1em;
+            width: 100%;
+            border-radius: 0.5em;
+            resize: none;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>Formulário Simples</h1>
+    <form action="#" method="post">
+        <fieldset>
+            <legend>Informações de Contato</legend>
+            <label for="nome">Nome:</label>
+            <input id="nome" type="text" name="nome_acao" required>
+            <label for="email">Email:</label>
+            <input id="email" type="email" name="email_acao" required>
+            <label for="mensagem">Mensagem:</label>
+            <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+        </fieldset>
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+
+</html>
