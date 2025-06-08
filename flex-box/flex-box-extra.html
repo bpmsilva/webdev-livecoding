@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox Extra</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-flow: row wrap;
+            background: grey;
+            height: 800px;
+        }
+
+        .item {
+            flex: 1 1 320px;
+            color: white;
+        }
+
+        .item:nth-child(1) { order: 1; }
+
+        .item:nth-child(2) { align-self: stretch; }
+
+        .item:nth-child(3) { align-self: flex-end; }
+
+        .item:nth-child(4) { align-self: center; }
+
+        #red-box { background-color: red; }
+        #blue-box { background-color: blue; }
+        #green-box { background-color: green; }
+        #yellow-box { background-color: yellow; }
+        #purple-box { background-color: purple; }
+        #orange-box { background-color: orange; }
+        #pink-box { background-color: pink; }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="red-box" class="item">Item 1</div>
+        <div id="blue-box" class="item">Item 2</div>
+        <div id="green-box" class="item">Item 3</div>
+        <div id="yellow-box" class="item">Item 4</div>
+        <div id="purple-box" class="item">Item 5</div>
+        <div id="orange-box" class="item">Item 6</div>
+        <div id="pink-box" class="item">Item 7</div>
+    </div>
+</body>
+</html>
