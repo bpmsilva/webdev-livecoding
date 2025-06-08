@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #container {
+            display: flex;
+            /* Comentar e descomentar a linha abaixo para ver o efeito */
+            flex-direction: row; /* row | column */
+
+            /* center |  space-between | space-around | (remover height ou width) */
+            justify-content: center;
+            
+            /* center | space-between | space-around | stretch (remover height ou width) */
+            align-items: center;
+            height: 100vh;
+
+            /* gap: 1em; */
+
+            /* Evite que os itens ultrapassem o container */
+            flex-wrap: wrap; /* wrap | nowrap */
+
+        }
+
+        .item {
+            display: inline-block;
+            width: 200px;
+            height: 200px;
+        }
+
+        #red-box { background-color: red; }
+        #blue-box { background-color: blue; }
+        #green-box { background-color: green; }
+        #yellow-box { background-color: yellow; }
+        #purple-box { background-color: purple; }
+        #orange-box { background-color: orange; }
+        #pink-box { background-color: pink; }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="red-box" class="item"></div>
+        <div id="blue-box" class="item"></div>
+        <div id="green-box" class="item"></div>
+        <div id="yellow-box" class="item"></div>
+        <div id="purple-box" class="item"></div>
+        <div id="orange-box" class="item"></div>
+        <div id="pink-box" class="item"></div>
+    </div>
+</body>
+</html>
