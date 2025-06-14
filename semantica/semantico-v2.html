@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semântico</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #container {
+            width: 80%;
+            min-height: 100vh;
+            margin: 0 auto;
+        }
+
+        #container>header {
+            text-align: center;
+            background-color: tomato;
+            padding: 18px;
+        }
+
+        #container>header h1 {
+            font-size: xx-large;
+            color: white;
+        }
+
+        #container>nav {
+            background-color: aquamarine;
+            padding: 0px 0;
+        }
+
+        nav>ul {
+            list-style: none;
+            text-align: center;
+            font-size: 0px;
+        }
+
+        nav>ul>li {
+            display: inline-block;
+            font-size: x-large
+        }
+
+        nav>ul>li>a {
+            display: inline-block;
+            text-decoration: none;
+            color: black;
+            padding: 24px;
+        }
+
+        nav>ul>li>a:hover {
+            background-color: lightgreen;
+        }
+
+        #content {
+            display: flex;
+            justify-content: center;
+        }
+
+        #content>aside {
+            width: 25%;
+            background-color: pink;
+        }
+
+        #content>main {
+            width: 75%;
+            background-color: cadetblue;
+            padding: 16px;
+        }
+
+        main>h2 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            text-align: center;
+            padding: 16px 0px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        article {
+            background-color: lightseagreen;
+            padding: 16px;
+        }
+
+        section {
+            padding: 16px;
+            margin-bottom: 24px;
+            background-color: lightcyan;
+        }
+
+        section>h3 {
+            text-align: center;
+            padding: 8px 0px;
+            background-color: lightcoral;
+        }
+
+        figure {
+            padding: 16px;
+            text-align: center;
+            background-color: lightgoldenrodyellow;
+        }
+
+        section p {
+            text-align: center;
+            margin: 8px 0px;
+        }
+
+        section>p {
+            padding: 16px;
+        }
+
+        section>footer {
+            text-align: center;
+            padding: 16px;
+            background-color: lightcoral;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        aside>h2 {
+            text-align: center;
+            padding: 16px 0px;
+            background-color: lightgray;
+        }
+
+        aside>ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        aside>ul>li {
+            display: block;
+            background-color: lightgray;
+            text-align: center;
+        }
+
+        aside>ul>li>a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            padding: 16px;
+        }
+
+        aside>ul>li>a:hover {
+            background-color: lightblue;
+        }
+
+        article {
+            border: 3px solid #ccc;
+        }
+
+        footer {
+            text-align: center;
+            padding: 32px 0px;
+            background-color: purple;
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <header>
+            <h1>Logo do Site</h1>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Serviços</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+
+        <div id="content">
+            <aside>
+                <h2>Menu Lateral</h2>
+                <ul>
+                    <li><a href="#">Opção 1</a></li>
+                    <li><a href="#">Opção 2</a></li>
+                    <li><a href="#">Opção 3</a></li>
+                    <li><a href="#">Opção 4</a></li>
+                    <li><a href="#">Opção 5</a></li>
+                    <li><a href="#">Opção 6</a></li>
+                    <li><a href="#">Opção 7</a></li>
+                </ul>
+            </aside>
+
+            <main>
+                <h2>Bem-vindo ao Meu Site</h2>
+                <article>
+                    <h3> Azulejos top de linha </h3>
+                    <section>
+                        <h3>Subtítulo</h3>
+                        <figure>
+                            <img src="../assets/tile-01.jpg" alt="Tile 1">
+                            <figcaption>Uma imagem de exemplo para a galeria.</figcaption>
+                        </figure>
+                        <p>Descrição da Imagem</p>
+                        <footer>
+                            <p>Mais informações sobre a imagem.</p>
+                        </footer>
+                    </section>
+                </article>
+                <article>
+                    <h3> Azulejos top de linha </h3>
+                    <section>
+                        <h3>Subtítulo</h3>
+                        <figure>
+                            <img src="../assets/tile-02.jpg" alt="Tile 2">
+                            <figcaption>Uma imagem de exemplo para a galeria.</figcaption>
+                        </figure>
+                        <p>Descrição da Imagem</p>
+                        <footer>
+                            <p>Mais informações sobre a imagem.</p>
+                        </footer>
+                    </section>
+                </article>
+                <article>
+                    <h3> Azulejos top de linha </h3>
+                    <section>
+                        <h3>Subtítulo</h3>
+                        <figure>
+                            <img src="../assets/tile-03.jpg" alt="Tile 3">
+                            <figcaption>Uma imagem de exemplo para a galeria.</figcaption>
+                        </figure>
+                        <p>Descrição da Imagem</p>
+                        <footer>
+                            <p>Mais informações sobre a imagem.</p>
+                        </footer>
+                    </section>
+                </article>
+            </main>
+        </div>
+        <footer>
+            <p>&copy; 2023 Meu Site. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+</body>
+
+</html>
