@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Layout com float</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #container {
+            width: 60%;
+            min-height: 100vh;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            background-color: tomato;
+            padding: 18px;
+            font-size: 16px;
+        }
+
+        #container>footer {
+            background-color: #333;
+            text-align: center;
+            padding: 16px;
+            background-color: plum;
+        }
+
+        nav {
+            background-color: aquamarine;
+        }
+
+        nav ul {
+            /* Para remover o espaçamento entre os itens */
+            list-style: none;
+            text-align: center;
+            font-size: 0px;
+        }
+
+        nav ul li {
+            display: inline-block;
+        }
+
+        nav ul li a {
+            display: inline-block;
+            text-decoration: none;
+            color: black;
+            padding: 24px;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            background-color: lightgreen;
+        }
+
+        #content {
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+        }
+
+        aside {
+            width: 30%;
+            background-color: lightpink;
+            padding: 18px;
+        }
+
+        main {
+            flex: 1 1 auto;
+            width: 70%;
+            border: 1px solid #ccc;
+            padding: 64px;
+            background-color: lightblue;
+        }
+
+        main>h1 {
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        article {
+            margin-bottom: 48px;
+            padding: 24px;
+            background-color: turquoise;
+        }
+
+        section {
+            padding: 16px;
+            margin-bottom: 24px;
+            background-color: aqua;
+        }
+
+        article h2,
+        article footer {
+            margin-bottom: 24px;
+            padding: 32px;
+            text-align: center;
+        }
+
+        section h3,
+        section figure {
+            text-align: center;
+            margin: 16px 0px;
+        }
+
+        article footer {
+            background-color: purple;
+        }
+
+        section p {
+            padding: 32px;
+            background-color: yellowgreen;
+        }
+
+        figure {
+            margin: 0 auto;
+            text-align: center;
+            padding: 32px 0px;
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+
+        <header>
+            <h1>Logo do Meu Site</h1>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Serviços</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+
+        <div id="content">
+            <aside>
+                <h2>Informações adicionais</h2>
+                <p>Este é um conteúdo complementar ao principal da página.</p>
+                <p>Este é um conteúdo complementar ao principal da página.</p>
+                <p>Este é um conteúdo complementar ao principal da página.</p>
+                <p>Este é um conteúdo complementar ao principal da página.</p>
+                <p>Este é um conteúdo complementar ao principal da página.</p>
+                <p>Este é um conteúdo complementar ao principal da página.</p>
+                <p>Este é um conteúdo complementar ao principal da página.</p>
+                <!-- ... -->
+            </aside>
+            <main>
+                <h1>Conteúdo Principal</h1>
+
+                <article>
+                    <h2>Título do Artigo</h2>
+                    <section>
+                        <h3>Subtítulo do Artigo</h3>
+                        <figure>
+                            <img src="../assets/tile-01.jpg" alt="Descrição da imagem ilustrativa">
+                            <figcaption>Legenda explicando a imagem ilustrativa do artigo.</figcaption>
+                        </figure>
+                        <p>Este é o conteúdo do artigo, que pode conter informações relevantes para o usuário.</p>
+                    </section>
+                    <footer>
+                        <p>Publicado em: 01/01/2023</p>
+                        <p>Autor: Nome do Autor</p>
+                    </footer>
+                </article>
+                <article>
+                    <h2>Título do Artigo</h2>
+                    <section>
+                        <h3>Subtítulo do Artigo</h3>
+                        <figure>
+                            <img src="../assets/tile-01.jpg" alt="Descrição da imagem ilustrativa">
+                            <figcaption>Legenda explicando a imagem ilustrativa do artigo.</figcaption>
+                        </figure>
+                        <p>Este é o conteúdo do artigo, que pode conter informações relevantes para o usuário.</p>
+
+                    </section>
+                    <footer>
+                        <p>Publicado em: 01/01/2023</p>
+                        <p>Autor: Nome do Autor</p>
+                    </footer>
+                </article>
+                <article>
+                    <h2>Título do Artigo</h2>
+                    <section>
+                        <h3>Subtítulo do Artigo</h3>
+                        <figure>
+                            <img src="../assets/tile-01.jpg" alt="Descrição da imagem ilustrativa">
+                            <figcaption>Legenda explicando a imagem ilustrativa do artigo.</figcaption>
+                        </figure>
+                        <p>Este é o conteúdo do artigo, que pode conter informações relevantes para o usuário.</p>
+
+                    </section>
+                    <footer>
+                        <p>Publicado em: 01/01/2023</p>
+                        <p>Autor: Nome do Autor</p>
+                    </footer>
+                </article>
+                <article>
+                    <h2>Título do Artigo</h2>
+                    <section>
+                        <h3>Subtítulo do Artigo</h3>
+                        <figure>
+                            <img src="../assets/tile-01.jpg" alt="Descrição da imagem ilustrativa">
+                            <figcaption>Legenda explicando a imagem ilustrativa do artigo.</figcaption>
+                        </figure>
+                        <p>Este é o conteúdo do artigo, que pode conter informações relevantes para o usuário.</p>
+
+                    </section>
+                    <footer>
+                        <p>Publicado em: 01/01/2023</p>
+                        <p>Autor: Nome do Autor</p>
+                    </footer>
+                </article>
+
+            </main>
+        </div>
+        <footer>
+            <p>&copy; 2025 Meu Site. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+</body>
+
+</html>
