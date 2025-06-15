@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Especifidade CSS</title>
+    <style>
+        /* 
+            Especificidade em CSS:
+
+            Determinação da ordem de especificidade: ID, Classe, Atributo e Pseudo-classe, Elemento e Pseudo-elemento.
+
+            Quando há conflito entre regras CSS aplicadas a um mesmo elemento,
+            o navegador utiliza a especificidade para decidir qual estilo aplicar.
+
+            Primeiro considera-se a origem da regra (inline, interna ou externa),
+            depois a especificidade dos seletores.
+
+            A ordem de prioridade entre os seletores é a seguinte
+            (do mais específico para o menos específico):
+
+                1. Declarações com !important (prioridade máxima)
+                2. Seletores de ID (#exemplo)
+                3. Seletores de classe (.exemplo), atributos ([type="text"])
+                e pseudo-classes (:hover, :nth-child, etc.)
+                4. Seletores de elemento (div, h1, p, etc.) e pseudo-elementos (::before, ::after, etc.)
+                5. O seletor universal (*) não contribui para a especificidade
+
+            Combinadores como descendente (espaço), filho (>),
+            adjacente (+) e irmão geral (~) **não aumentam a especificidade**,
+            mas são levados em conta na correspondência do seletor.
+
+            Se dois seletores tiverem a mesma especificidade,
+            o que aparecer **por último no código CSS** será aplicado (regra de desempate).
+
+            Evite usar !important sempre que possível — prefira resolver conflitos
+            com seletores bem estruturados.
+
+            Exemplo de seletor com alta especificidade:
+            
+            #meu-id .minha-classe p a[href="https://exemplo.com"]:hover {
+                color: red;
+            }
+
+            Análise do seletor acima:
+                - A (IDs): 1 seletores (#meu-id)
+                - B (classes, atributos, pseudo-classes): 3 (.minha-classe, [href=...], :hover)
+                - C (elementos, pseudo-elementos): 2 (p, a)
+
+            Esta especificidade pode ser verificada no VS Code.
+        */
+
+
+
+        /* Parte 1 */
+        /* Exemplo de seletor com baixa especificidade */
+        #id1 {
+            background-color: blue;
+            font-size: 32px;
+        }
+
+        .classe1 {
+            background-color: green;
+            font-size: 24px;
+        }
+
+        #id1 .classe1 {
+            background-color: purple;
+            font-size: 16px;
+        }
+
+        /* Parte 2 */
+        /* Exemplo de seletor com alta especificidade */
+        /* #meu-id.minha-classe seleciona elementos com ID e classe simultaneamente */
+        #id2.classe2 p a[href="https://exemplo.com"]:hover {
+            text-decoration: none;
+            color: red;
+        }
+
+        /* Parte 3: !important */
+        /* Exemplo de seletor com !important */
+        #id3.class3 {
+            color: blue;
+        }
+
+        #id3 p {
+            color: green !important;
+            /* Este seletor terá prioridade máxima */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Parte 1 -->
+    <h1>Exemplo de Especificidade em CSS</h1>
+    <p>Este é um exemplo de como a especificidade funciona em CSS.</p>
+    <div id="id1">
+        <div class="classe1">
+            <p>Este é um parágrafo dentro de uma div com ID.</p>
+        </div>
+    </div>
+
+    <!-- Parte 2 -->
+    <h1>Especificidade em CSS</h1>
+    <p>Este é um exemplo de como a especificidade funciona em CSS.</p>
+    <div id="id2" class="classe2">
+        <p>Este é um parágrafo dentro de uma div com ID e classe.
+            <a href="https://exemplo.com">Link para exemplo.com</a>
+        </p>
+    </div>
+    <p>O link acima deve ficar vermelho quando você passar o mouse sobre ele.</p>
+
+    <!-- Parte 3 -->
+    <h1>Exemplo de !important</h1>
+    <p>Este é um exemplo de como o !important funciona em CSS.</p>
+    <div id="id3" class="class3">
+        <p>Este é um parágrafo dentro de uma div com ID e classe.</p>
+        <p>Este parágrafo deve ser verde, mesmo que haja outra regra CSS que defina a cor como azul.</p>
+    </div>
+</body>
+
+</html>
