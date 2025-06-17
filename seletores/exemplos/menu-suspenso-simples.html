@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Suspenso</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            padding: 32px 0;
+            font-size: 32px;
+            background-color: darkgreen;
+        }
+
+        #menu {
+            display: flex;
+            justify-content: center;
+            background-color: aquamarine;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        #menu>li {
+            position: relative;
+        }
+
+        a {
+            display: block;
+            color: black;
+            font-size: 32px;
+            padding: 32px 16px;
+            text-decoration: none;
+            width: 100%;
+            text-align: center;
+            transition: background-color 1s ease;
+        }
+
+        .submenu {
+            min-width: 100%;
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: beige;
+            transition: all 1s ease;
+        }
+
+        #menu>li:hover .submenu {
+            display: block;
+        }
+
+        a:hover {
+            background-color: aliceblue;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Menu Suspenso</h1>
+    <ul id="menu">
+        <li><a href="#">Sobre</a></li>
+        <li><a href="#">Informações</a>
+            <ul class="submenu">
+                <li><a href="#">Institucional</a></li>
+                <li><a href="#">Programas</a></li>
+                <li><a href="#">Social</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Reitoria</a>
+            <ul class="submenu">
+                <li><a href="#">Agenda</a></li>
+                <li><a href="#">Sistemas</a></li>
+                <li><a href="#">Cerimonial</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Sistemas</a>
+            <ul class="submenu">
+                <li><a href="#">Biblioteca</a></li>
+                <li><a href="#">SUAP</a></li>
+                <li><a href="#">SEI</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Contato</a></li>
+    </ul>
+</body>
+
+</html>
