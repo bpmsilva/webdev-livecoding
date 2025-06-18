@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML + JavaScript</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+        }
+
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            font-size: 64px;
+            margin-top: 32px;
+        }
+
+        p {
+            font-size: 48px;
+            margin: 32px 0;
+        }
+
+        button {
+            padding: 16px 32px;
+            font-size: 24px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    </style>
+    <script defer>
+        function contar() {
+            // Acessando elementos do DOM
+            // Usando o método getElementById para obter o botão e o contador
+            let incrementador = document.getElementById('incrementador');
+            let contador = document.getElementById('contador');
+            let count = 0;
+
+            // Adicionando um evento de clique ao botão
+            incrementador.addEventListener('click', function () {
+                count++;
+                contador.textContent = count;
+            });
+        };
+
+        // Alternativa recomendada: usar o evento DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', contar);
+        // Alternativa não recomentada:window.onload
+        // window.onload = contar;
+    </script>
+</head>
+
+<body>
+    <h1>Contador</h1>
+    <p id="contador">0</p>
+    <button id="incrementador">Incrementar</button>
+</body>
+
+</html>
