@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Alinha ao centro o conteúdo do body
+            document.body.style.textAlign = 'center';
+
+            // Cria um parágrafo para exibir o texto criado
+            let value = prompt("Digite um valor:");
+            if (value !== null) {
+                let p = document.createElement('p');
+                p.textContent = `Você digitou: ${value}`;
+                document.body.appendChild(p);
+            } else {
+                alert("Nenhum valor foi digitado.");
+            }
+        });
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
