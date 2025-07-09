@@ -51,7 +51,26 @@
             Esta especificidade pode ser verificada no VS Code.
         */
 
+        /* Resumo:
+            Especificidade (ordem de prioridade):
+                - IDs
+                - Classes
+                - Atributos e pseudo-classes
+                - Elementos e pseudo-elementos
 
+            Exemplos de:
+                - Atributos: [type="text"], [href^="https://"]
+                - Pseudo-classes: :hover, :focus, :active
+                - Elementos: div, p, h1, a
+                - Pseudo-elementos: ::before, ::after
+        */
+
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
 
         /* Parte 1 */
         /* Exemplo de seletor com baixa especificidade */
@@ -85,7 +104,7 @@
         }
 
         #id3 p {
-            color: green !important;
+            background-color: green !important;
             /* Este seletor terá prioridade máxima */
         }
     </style>
