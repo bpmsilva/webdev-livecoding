@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relógio</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #relogio {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="relogio">00:00:00</div>
+    <script defer>
+        function atualizaRelogio() {
+            const date = new Date();
+
+            const hour = date.getHours().toString().padStart(2, '0');
+            const minute = date.getMinutes().toString().padStart(2, '0');
+            const seconds = date.getSeconds().toString().padStart(2, '0');
+
+            const fullHour = `${hour}:${minute}:${seconds}`;
+
+            const relogio = document.getElementById('relogio');
+            relogio.innerText = fullHour;
+        }
+
+        // Atualiza imediatamente o relógio assim que a página é carregada
+        atualizaRelogio();
+
+        // Atualiza o relógio a cada 1000ms (1 segundo)
+        setInterval(atualizaRelogio, 1000);
+    </script>
+
+</body>
+
+</html>
