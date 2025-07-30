@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .carrossel {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .carrossel img {
+      /* Faz com que cada <img> seja posicionada em relação ao primeiro ancestral com position:
+      absolute. Com isso, todas as imagens ficam uma sobre a outra, no mesmo ponto da tela.
+      Isso é necessário para criar o efeito de transição suave entre elas (fade-in/fade-out). */
+      position: absolute;
+      max-width: 100%;
+      max-height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .carrossel img.active {
+      opacity: 1;
+    }
+  </style>
+  <script>
+    const images = [
+      "assets/carrossel-01.jpeg",
+      "assets/carrossel-02.jpeg",
+      "assets/carrossel-03.jpeg",
+    ];
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const carrossel = document.querySelector(".carrossel");
+
+      let currentIndex = 0;
+      let imgElements = [];
+
+      // Pré-carrega e adiciona as imagens ao carrossel
+      // São elementos <img> que são criados dinamicamente
+      // que serão adicionados ao carrossel
+      images.forEach((src, index) => {
+
+        // Cria um elemento <img> para cada imagem
+        const img = document.createElement("img");
+
+        // Define o atributo src da imagem
+        img.src = src;
+
+        // Adiciona a classe 'active' apenas para a primeira imagem
+        if (index === 0) {
+          img.classList.add("active");
+        }
+
+        // Adiciona o elemento <img> ao carrossel
+        carrossel.appendChild(img);
+        imgElements.push(img);
+      });
+
+      function nextImage() {
+        imgElements[currentIndex].classList.remove("active");
+        currentIndex = (currentIndex + 1) % imgElements.length;
+        imgElements[currentIndex].classList.add("active");
+      }
+
+      setInterval(nextImage, 1000); // muda a cada 1 segundo
+    });
+  </script>
+</head>
+
+<body>
+  <div class="carrossel"></div>
+</body>
+
+</html>
