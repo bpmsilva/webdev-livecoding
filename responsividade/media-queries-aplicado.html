@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Queries</title>
+    <style>
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .caixa {
+            flex: 1;
+            padding: 20px;
+            background-color: lightblue;
+            text-align: center;
+        }
+
+        /* Quando a tela for menor que 768px, empilha as caixas */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="caixa">Caixa 1</div>
+        <div class="caixa">Caixa 2</div>
+    </div>
+</body>
+
+</html>
