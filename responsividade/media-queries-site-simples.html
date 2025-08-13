@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exemplo com Media Queries</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      padding: 1em;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1em;
+    }
+
+    .container {
+      display: flex;
+      gap: 1em;
+    }
+
+    .card {
+      background-color: #f4f4f4;
+      padding: 1em;
+      border: 1px solid #ccc;
+      border-radius: 0.5em;
+      flex: 1;
+      text-align: center;
+    }
+
+    /* MEDIA QUERY: telas menores que 600px */
+    @media (max-width: 600px) {
+      body {
+        background-color: #666;
+      }
+
+      .container {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Meus Cards</h1>
+  <div class="container">
+    <div class="card">Card 1</div>
+    <div class="card">Card 2</div>
+    <div class="card">Card 3</div>
+  </div>
+</body>
+</html>
