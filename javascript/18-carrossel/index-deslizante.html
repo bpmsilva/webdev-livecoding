@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carrossel Deslizante</title>
+  <style>
+  <style>
+    /* Estilos Globais: zerar margens e preenchimentos */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Estilos do Corpo */
+    body {
+      font-family: sans-serif;
+      /* display flex, flex-direction e align-items
+         aqui servem para centralizar o conteúdo */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .carrossel-container {
+      max-width: 600px;
+      overflow: hidden;
+      /* Serve para "esconder" as imagens que estão fora da área visível */
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .carrossel {
+      display: flex;
+      transition: transform 0.4s ease-in-out;
+    }
+
+    .botoes {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .botoes button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 5px;
+    }
+
+    .botoes button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Carrossel Deslizante</h1>
+
+  <div class="carrossel-container">
+    <div class="carrossel" id="carrossel">
+      <img src="./assets/carrossel-01.jpeg" alt="Carrossel 1">
+      <img src="./assets/carrossel-02.jpeg" alt="Carrossel 2">
+      <img src="./assets/carrossel-03.jpeg" alt="Carrossel 3">
+    </div>
+  </div>
+
+  <div class="botoes">
+    <button onclick="voltar()">Anterior</button>
+    <button onclick="avancar()">Próximo</button>
+  </div>
+
+  <script>
+    const carrossel = document.getElementById('carrossel');
+    const totalSlides = carrossel.children.length;
+    let slideAtual = 0;
+
+    function atualizarCarrossel() {
+      carrossel.style.transform = `translateX(-${slideAtual * 100}%)`;
+    }
+  
+    function avancar() {
+      slideAtual = (slideAtual + 1) % totalSlides;
+      atualizarCarrossel();
+    }
+
+    function voltar() {
+      slideAtual = (slideAtual - 1 + totalSlides) % totalSlides;
+      atualizarCarrossel();
+    }
+  </script>
+</body>
+</html>
