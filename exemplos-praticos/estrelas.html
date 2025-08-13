@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação com Estrelas</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        /* Container das estrelas */
+        .estrelas {
+            /* inverte a ordem para facilitar o hover */
+            display: inline-flex;
+            flex-direction: row-reverse;
+        }
+
+        /* Estilo padrão das estrelas */
+        .estrelas label {
+            font-size: 2rem;
+            color: #ccc;
+            /* cinza */
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        /* estrela onde o mouse está. */
+        .estrelas label:hover,
+        /* Todas as estrelas anteriores. */
+        /* O seletor ~ é o seletor de irmãos seguintes */
+        .estrelas label:hover~label {
+            color: gold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Avaliação</h1>
+
+    <div class="estrelas">
+        <label>★</label>
+        <label>★</label>
+        <label>★</label>
+        <label>★</label>
+        <label>★</label>
+    </div>
+
+</body>
+
+</html>
