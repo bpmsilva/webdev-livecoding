@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elementos - DOM</title>
+</head>
+
+<body>
+    <div id="container">
+        <h1 id="cabecalho-01">Cabeçalho 1</h1>
+        <p>Parágrafo 1</p>
+        <h2>Cabeçalho 2</h2>
+        <p>Parágrafo 2</p>
+    </div>
+    <script>
+        console.log('Acessando a DOM e seus elementos:');
+
+        // Acessando o objeto document
+        // console.log(document);
+        console.dir(document);
+        console.log(document.documentElement);
+
+        // Acessando elementos do DOM
+        const container = document.getElementById("container");
+        // console.log(container);
+        console.dir(container);
+
+        // Acessando o elemento h1
+        const cabecalho01 = document.getElementById("cabecalho-01");
+        // console.log(cabecalho01);
+        console.dir(cabecalho01);
+
+        // Acessando o primeiro elemento p
+        const p = document.getElementsByTagName("p")[0];
+        // console.log(p);
+        console.dir(p);
+        console.log('\n\n\n');
+
+        // Acessando o tipo de nó
+        // O tipo de nó é representado por um número inteiro:
+        console.log('Estes são os tipos de nós:');
+        console.log(`O tipo de nó do documento é ${document.nodeType}`); // 9
+        console.log(`O tipo de nó do container é ${container.nodeType}`); // 1
+        console.log(`O tipo de nó do cabeçalho é ${cabecalho01.nodeType}`); // 1
+        console.log(`O tipo de nó do parágrafo é ${p.nodeType}`); // 1
+        console.log(`O tipo de nó do texto dentro do parágrafo é ${p.childNodes[0].nodeType}`); // 3
+
+        console.log('\n\n\n');
+
+        // outros atributos
+        console.log('Acessando outros atributos dos elementos:');
+        console.log(`ID do cabeçalho: ${cabecalho01.id}`); // cabecalho-01
+        console.log(`Texto do cabeçalho: ${cabecalho01.innerText}`); // Cabeçalho 1
+
+        // imprime o nome da tag do primeiro filho do container
+        let firstChild = container.firstChild;
+        console.log(`Primeiro filho do container: ${firstChild.tagName || firstChild.nodeValue?.trim() || 'Texto vazio'}`); // #text
+
+        console.log('\n\n\n');
+
+        // imprime o nome da tag do primeiro filho do container
+        let firstElement = container.firstElementChild;
+        console.log(`Tag do primeiro elemento do container: ${firstElement.tagName}`); // h1
+
+        const parentElement = firstElement.parentElement;
+        console.log(`Tag do elemento pai do primeiro elemento do container: ${parentElement.tagName}`); // div
+
+        // agora o último elemento filho do container
+        let lastElement = container.lastElementChild;
+        console.log(`Tag do último elemento do container: ${lastElement.tagName}`); // p
+
+        console.log('\n\n\n');
+
+        for (let i = 0; i < container.childNodes.length; i++) {
+            console.log(container.childNodes[i]);
+        }
+
+        console.log('\n\nOutra forma de iterar sobre os childNodes:\n');
+        for (let child of container.childNodes) {
+            if (child.nodeType === 3 && child.textContent.trim() === '') {
+                continue; // Ignora nós de texto vazios
+            }
+            console.log(child);
+        }
+    </script>
+</body>
+
+</html>
