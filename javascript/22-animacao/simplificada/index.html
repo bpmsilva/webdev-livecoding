@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bola com velocidade cosseno</title>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f4f4f4;
+        }
+
+        #linha {
+            position: relative;
+            width: 600px;
+            height: 4px;
+            background: black;
+        }
+
+        #bola {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            border-radius: 50%;
+            top: -8px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="linha">
+        <div id="bola"></div>
+    </div>
+
+    <script>
+        const linha = document.getElementById("linha");
+        const bola = document.getElementById("bola");
+
+        const anim = document.body.animate([{ opacity: 1 }, { opacity: 1 }], {
+            duration: 1000000,
+            iterations: Infinity
+        });
+
+        function atualizar() {
+            const t = anim.currentTime / 1000;
+
+            const lineWidth = linha.clientWidth;
+            const ballWidth = bola.offsetWidth;
+
+            const center = lineWidth / 2;
+            const halfLen = lineWidth / 2;
+
+            // amplitude máxima para a bola não ultrapassar a linha:
+            const A = halfLen - ballWidth / 2;
+
+            const omega = 2;
+            const x = A * Math.sin(omega * t);
+
+            // centraliza a bola no ponto (center + x)
+            bola.style.transform = `translateX(${center + x - ballWidth / 2}px)`;
+
+            requestAnimationFrame(atualizar);
+        }
+
+        atualizar();
+    </script>
+
+</body>
+
+</html>

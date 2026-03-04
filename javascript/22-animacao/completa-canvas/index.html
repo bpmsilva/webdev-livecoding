@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bola com velocidade = projeção de cosseno</title>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            display: grid;
+            place-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        canvas {
+            border: 1px solid #ddd;
+            border-radius: 12px;
+        }
+
+        .panel {
+            width: min(720px, 92vw);
+            margin-top: 10px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <canvas id="c" width="720" height="220"></canvas>
+
+        <div class="panel">
+            <div><b>Vmax</b> (px/s): <span id="vmaxOut"></span></div>
+            <input id="vmax" type="range" min="50" max="600" value="250" />
+
+            <div style="margin-top:10px;"><b>Período</b> (s): <span id="periodOut"></span></div>
+            <input id="period" type="range" min="1" max="10" value="4" />
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById("c");
+        const ctx = canvas.getContext("2d");
+
+        const vmaxSlider = document.getElementById("vmax");
+        const periodSlider = document.getElementById("period");
+        const vmaxOut = document.getElementById("vmaxOut");
+        const periodOut = document.getElementById("periodOut");
+
+        function readParams() {
+            const Vmax = Number(vmaxSlider.value);     // px/s
+            const T = Number(periodSlider.value);      // s
+            const omega = (2 * Math.PI) / T;           // rad/s
+            vmaxOut.textContent = Vmax.toFixed(0);
+            periodOut.textContent = T.toFixed(0);
+            return { Vmax, T, omega };
+        }
+
+        let t0 = performance.now();
+        let t = 0;
+
+        function draw() {
+            const { Vmax, omega } = readParams();
+
+            // Geometria da linha
+            const padding = 60;
+            const y = canvas.height / 2;
+            const xMin = padding;
+            const xMax = canvas.width - padding;
+            const center = (xMin + xMax) / 2;
+            const halfLen = (xMax - xMin) / 2;
+
+            // Para não ultrapassar a linha:
+            // x(t) = center + A*sin(ωt), com A <= halfLen
+            // Como A = Vmax/ω (pela integral), vamos limitar A:
+            const A = Math.min(halfLen, Vmax / omega);
+
+            // Atualiza tempo real
+            const now = performance.now();
+            t = (now - t0) / 1000; // segundos
+
+            // Velocidade e posição
+            const v = Vmax * Math.cos(omega * t);
+            const x = center + A * Math.sin(omega * t);
+
+            // Fundo
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Linha preta
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = "#000";
+            ctx.beginPath();
+            ctx.moveTo(xMin, y);
+            ctx.lineTo(xMax, y);
+            ctx.stroke();
+
+            // Bola vermelha
+            ctx.fillStyle = "red";
+            ctx.beginPath();
+            ctx.arc(x, y, 14, 0, 2 * Math.PI);
+            ctx.fill();
+
+            // HUD: mostra v(t) (projeção do cosseno)
+            ctx.fillStyle = "#111";
+            ctx.font = "14px system-ui, sans-serif";
+            ctx.fillText(`v(t) = Vmax·cos(ωt) = ${v.toFixed(1)} px/s`, 16, 26);
+            ctx.fillText(`x(t) = center + A·sin(ωt)`, 16, 46);
+
+            requestAnimationFrame(draw);
+        }
+
+        draw();
+    </script>
+</body>
+
+</html>
