@@ -28,12 +28,10 @@ for (let chave in pessoa) {
 }
 
 // 5. Podemos usar o forEach para iterar sobre arrays
-numeros.forEach(function(numero) {
-    console.log(numero);
+numeros.forEach((numero) => {
+    console.log('Este foi o número: ', numero, end='');
 });
 
 // 6. Ou usar o map para criar um novo array com base em um array existente
-let quadrados = numeros.map(function(numero) {
-    return numero * numero;
-});
+let quadrados = numeros.map(numero => numero*numero);
 console.log(quadrados);
