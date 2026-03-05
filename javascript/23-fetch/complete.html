@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Exemplo de Fetch</title>
+</head>
+
+<body>
+
+    <h1>Usuário da API</h1>
+    <button onclick="carregarUsuario('https://jsonplaceholder.typicode.com/users')">Carregar usuário</button>
+    <p id="resultado"></p>
+
+    <script>
+        function carregarUsuario(url) {
+            fetch(url)
+                .then(response => response.json())
+                .then(dados => {
+                    let s = '';
+                    dados.forEach(element => {
+                        s += `Nome: ${element.name} --- Email: ${element.email}<br>`;
+                    });
+                    document.getElementById("resultado").innerHTML = s;
+                })
+                .catch(erro => {
+                    document.getElementById("resultado").innerHTML = `Erro ao carregar os dados de ${url}`;
+                });
+        }
+    </script>
+
+</body>
+
+</html>

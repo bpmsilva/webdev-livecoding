@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Callbacks vs Promises vs Async/Await</title>
+    <style>
+        body {
+            font-family: system-ui, Arial;
+            padding: 16px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        button {
+            margin: 6px 6px 6px 0;
+            padding: 10px 12px;
+            cursor: pointer;
+        }
+
+        pre {
+            background: #111;
+            color: #eee;
+            padding: 12px;
+            border-radius: 8px;
+            overflow: auto;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .card {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-top: 12px;
+        }
+
+        small {
+            color: #444;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Callbacks vs Promises vs Async/Await</h1>
+    <p>
+        Mesma tarefa em 3 estilos: buscar usuário → buscar posts do usuário → "montar" um resumo.
+        <br><small>(Tudo é simulado com setTimeout, como se fosse uma API)</small>
+    </p>
+
+    <div class="row">
+        <button id="btnCallbacks">Rodar com Callbacks</button>
+        <button id="btnPromises">Rodar com Promises (then/catch)</button>
+        <button id="btnAsyncAwait">Rodar com Async/Await</button>
+        <button id="btnClear">Limpar</button>
+    </div>
+
+    <div class="card">
+        <strong>Log:</strong>
+        <pre id="log"></pre>
+    </div>
+
+    <script>
+
+        // elementos de UI
+        const logElement = document.getElementById("log");
+        function log(msg) {
+            const time = new Date().toLocaleTimeString();
+            logElement.textContent += `[${time}] ${msg}\n`;
+            logElement.scrollTop = logElement.scrollHeight;
+        }
+        function clearLog() {
+            logElement.textContent = "";
+        }
+
+        // Simulação de Banco de Dados
+        const DB = {
+            users: [
+                { id: 1, name: "Ana" },
+                { id: 2, name: "Bruno" },
+            ],
+            posts: [
+                { id: 101, userId: 1, title: "Callbacks são antigos?" },
+                { id: 102, userId: 1, title: "Promises salvam vidas" },
+                { id: 103, userId: 2, title: "Async/Await é mais legível" },
+            ]
+        };
+
+        // Simula latência e falha aleatória
+        function randomDelay(min = 300, max = 900) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        function randomFail(prob = 0.25) { // 25% de chance de falhar
+            return Math.random() < prob;
+        }
+
+        // Simulação de API com callbacks
+        function fetchUserById_cb(id, callback) {
+            setTimeout(() => {
+                if (randomFail()) return callback(new Error("Falha ao buscar usuário"));
+                const user = DB.users.find(u => u.id === id);
+                if (!user) return callback(new Error("Usuário não encontrado"));
+                callback(null, user);
+            }, randomDelay());
+        }
+
+        function fetchPostsByUserId_cb(userId, callback) {
+            setTimeout(() => {
+                if (randomFail()) return callback(new Error("Falha ao buscar posts"));
+                const posts = DB.posts.filter(p => p.userId === userId);
+                callback(null, posts);
+            }, randomDelay());
+        }
+
+        // API com promises
+        function fetchUserById_p(id) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    if (randomFail()) return reject(new Error("Falha ao buscar usuário"));
+                    const user = DB.users.find(u => u.id === id);
+                    if (!user) return reject(new Error("Usuário não encontrado"));
+                    resolve(user);
+                }, randomDelay());
+            });
+        }
+
+        function fetchPostsByUserId_p(userId) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    if (randomFail()) return reject(new Error("Falha ao buscar posts"));
+                    const posts = DB.posts.filter(p => p.userId === userId);
+                    resolve(posts);
+                }, randomDelay());
+            });
+        }
+
+        // tarefa com callbacks
+        function runWithCallbacks() {
+            clearLog();
+            log("=== Iniciando CALLBACKS ===");
+
+            fetchUserById_cb(1, (err, user) => {
+                if (err) {
+                    log("Erro: " + err.message);
+                    return;
+                }
+                log(`Usuário carregado: ${user.name} (id=${user.id})`);
+
+                fetchPostsByUserId_cb(user.id, (err2, posts) => {
+                    if (err2) {
+                        log("Erro: " + err2.message);
+                        return;
+                    }
+                    log(`Posts carregados: ${posts.length}`);
+
+                    const titles = posts.map(p => p.title).join(" | ");
+                    log(`Resumo: ${user.name} escreveu: ${titles}`);
+                    log("Fim.");
+                });
+            });
+        }
+
+        function runWithPromises() {
+            clearLog();
+            log("=== Iniciando PROMISES (then/catch) ===");
+
+            fetchUserById_p(1)
+                .then(user => {
+                    log(`Usuário carregado: ${user.name} (id=${user.id})`);
+                    return fetchPostsByUserId_p(user.id)
+                        .then(posts => ({ user, posts })); // empacota pra usar depois
+                })
+                .then(({ user, posts }) => {
+                    log(`Posts carregados: ${posts.length}`);
+                    const titles = posts.map(p => p.title).join(" | ");
+                    log(`Resumo: ${user.name} escreveu: ${titles}`);
+                    log("Fim.");
+                })
+                .catch(err => {
+                    log("Erro: " + err.message);
+                });
+        }
+
+        async function runWithAsyncAwait() {
+            clearLog();
+            log("=== Iniciando ASYNC/AWAIT ===");
+
+            try {
+                const user = await fetchUserById_p(1);
+                log(`Usuário carregado: ${user.name} (id=${user.id})`);
+
+                const posts = await fetchPostsByUserId_p(user.id);
+                log(`Posts carregados: ${posts.length}`);
+
+                const titles = posts.map(p => p.title).join(" | ");
+                log(`Resumo: ${user.name} escreveu: ${titles}`);
+                log("Fim.");
+            } catch (err) {
+                log("Erro: " + err.message);
+            }
+        }
+
+        // Adiciona eventListeners aos botões
+        document.getElementById("btnCallbacks").addEventListener("click", runWithCallbacks);
+        document.getElementById("btnPromises").addEventListener("click", runWithPromises);
+        document.getElementById("btnAsyncAwait").addEventListener("click", runWithAsyncAwait);
+        document.getElementById("btnClear").addEventListener("click", clearLog);
+
+        // Log inicial
+        clearLog();
+        log("Clique em um botão para executar.");
+    </script>
+
+</body>
+
+</html>

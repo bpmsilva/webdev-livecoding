@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tempo com Async/Await</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+        }
+
+        button {
+            padding: 8px 12px;
+        }
+
+        #resultado {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Consultar clima (Async/Await)</h1>
+
+    <input id="cidade" placeholder="Digite uma cidade" value="Salvador">
+    <button onclick="buscarTempo()">Buscar</button>
+
+    <p id="resultado"></p>
+
+    <script>
+
+        async function buscarTempo() {
+
+            const cidade = document.getElementById("cidade").value;
+            const resultado = document.getElementById("resultado");
+
+            try {
+                // busca coordenadas da cidade
+                const geoURL = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(cidade)}&count=1&language=pt&format=json`;
+
+                const geoResponse = await fetch(geoURL);
+                const geoData = await geoResponse.json();
+
+                if (!geoData.results) {
+                    resultado.innerHTML = "Cidade não encontrada.";
+                    return;
+                }
+
+                const latitude = geoData.results[0].latitude;
+                const longitude = geoData.results[0].longitude;
+
+                // busca clima atual
+                const weatherURL = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,wind_speed_10m&timezone=auto`;
+
+                const weatherResponse = await fetch(weatherURL);
+                const weatherData = await weatherResponse.json();
+
+                const temp = weatherData.current.temperature_2m;
+                const vento = weatherData.current.wind_speed_10m;
+
+                resultado.innerHTML = `Temperatura: ${temp} °C --- Velocidade do vento: ${vento} km/h`;
+            } catch (erro) {
+                resultado.innerHTML = "Erro ao consultar API.";
+                console.error(erro);
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
